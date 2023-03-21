@@ -1,0 +1,15 @@
+{
+    "compileOnSave":  true,
+    "compilerOptions": {
+        "lib": ["ES2015"],
+        "module": "commonjs",
+        "outDir": "dist",
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2015"
+        // "noImplicitAny": true, /*защита от неявных эни */
+    },
+    "include": [
+        "src"
+    ]
+}
