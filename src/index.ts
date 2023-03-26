@@ -694,45 +694,45 @@
 // // ...
 // }
 
-function call1(
-    f: (...args: unknown[]) => unknown, 
-    ...args: unknown[]
-): unknown {
-    return f(...args)
-}
+// function call1(
+//     f: (...args: unknown[]) => unknown, 
+//     ...args: unknown[]
+// ): unknown {
+//     return f(...args)
+// }
     
-function fill1(length: number, value: string): string[] { 
-    return Array.from({length}, () => value)
-}
+// function fill1(length: number, value: string): string[] { 
+//     return Array.from({length}, () => value)
+// }
     
-call1(fill1, 10, 1) 
+// call1(fill1, 10, 1) 
 
 
-function call2<T extends unknown[], R>( 
-    f: (...args: T) => R,
-    ...args: T
-): R {
-    return f(...args)
-}
+// function call2<T extends unknown[], R>( 
+//     f: (...args: T) => R,
+//     ...args: T
+// ): R {
+//     return f(...args)
+// }
 
-let g = call2(fill1, 10, 'a') 
-// let b = call2(fill1, 10)
-// let c = call2(fill1, 10, 'a', 'z')
+// let g = call2(fill1, 10, 'a') 
+// // let b = call2(fill1, 10)
+// // let c = call2(fill1, 10, 'a', 'z')
 
+// // дз 4.4
 
-
-function call<First, T extends unknown[], R>(
-    f: (arg0: First, arg1: string, ...rest: T) => R,
-    arg0: First,
-    arg1: string,
-    ...args: T
-  ): R {
-    return f(arg0, arg1, ...args);
-  }
+// function call<First, T extends unknown[], R>(
+//     f: (arg0: First, arg1: string, ...rest: T) => R,
+//     arg0: First,
+//     arg1: string,
+//     ...args: T
+//   ): R {
+//     return f(arg0, arg1, ...args);
+//   }
     
-function fill(length: number, value: string): string[] { 
-    return Array.from({length}, () => value)
-}
+// function fill(length: number, value: string): string[] { 
+//     return Array.from({length}, () => value)
+// }
     
 // call(fill, 10, 'a') 
 
@@ -743,6 +743,282 @@ function fill(length: number, value: string): string[] {
 //     return f(...args)
 // }
 
-let a = call(fill (1, '1'), '10', 'a') 
+// let a = call(fill (1, '1'), '10', 'a') 
 // let b = call(fill, 10)
 // let c = call(fill, 10, 'a', 'z')
+
+
+// Шахматы
+// class Game {
+//     private pieces = Game.makePieces()
+//         private static makePieces() {
+//             return [
+//     // Короли
+//                 new King('White', 'E', 1),
+//                 new King('Black', 'E', 8),
+//     // Ферзи
+//                 new Queen('White', 'D', 1),
+//                 new Queen('Black', 'D', 8),
+//     // Слоны
+//                 new Bishop('White', 'C', 1),
+//                 new Bishop('White', 'F', 1),
+//                 new Bishop('Black', 'C', 8),
+//                 new Bishop('Black', 'F', 8),
+//     // ...
+//     ] }
+// }
+    
+// abstract class Piece {
+//     protected position: Position
+//     constructor (
+//         private readonly color: Color, //Модификатор доступа private в конструкторе автоматически присваивает параметр к this (this.file и т. д.) и устанавливает его видимость как приватную. 
+//         file : File,
+//         rank: Rank
+//     ) {
+//         this.position = new Position(file, rank)
+//     } 
+//     moveTo(position: Position) {
+//         this.position = position
+//     }
+//     abstract canMoveTo(position: Position): boolean
+// }
+    
+
+
+// class Position {
+//     constructor (
+//         private file: File,
+//         private rank: Rank
+//     ) {}
+//     distanceFrom(position: Position) {
+//         return {
+//             rank: Math.abs(position.rank - this.rank),
+//             file: Math.abs(position.file.charCodeAt(0) - this.file.charCodeAt(0))  
+//         } 
+//     }
+// }   
+
+// class King extends Piece { 
+//     canMoveTo(position: Position) {
+//     let distance = this.position.distanceFrom(position)
+//     return distance.rank < 2 && distance.file < 2
+//     } 
+// } 
+
+
+// class Queen extends Piece {} 
+// class Bishop extends Piece {} 
+// class Knight extends Piece {} 
+// class Rook extends Piece {} 
+// class Pawn extends Piece {}
+
+// type Color = 'Black' | 'White'
+// type File = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G' | 'H' 
+// type Rank = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 
+
+
+
+// function distanceFrom(position: any, Position: typeof Position) {
+//     throw new Error("Function not implemented.")
+// }
+// ...
+// abstract class Piece { // если хотим чтобы пользователь не мог инстанцировать Piece, а создавал новые классы
+//     constructor(
+//     // ...
+
+// new Piece('White', 'E', 1)
+
+// class Set1 {
+//     has(value: number): boolean {
+    
+//     }
+//         add(value: number): this {
+  
+//     } 
+// }
+
+// class MutableSet extends Set1 { 
+//     delete(value: number): boolean {
+    
+//     } 
+//     // add(value: number): MutableSet { 
+//         // если добавиь зис в 835 то можно убрать 844-846
+//     // }
+// }
+
+//Интерфейсы
+// type Sushi = { calories: number
+//     salty: boolean
+//     tasty: boolean
+// }
+
+// interface Sushi { calories: number
+//     salty: boolean
+//     tasty: boolean
+// }
+
+// type Cake = { calories: number
+//     sweet: boolean
+//     tasty: boolean
+// }
+
+// type Food = { 
+//     calories: number
+//     tasty: boolean
+// }
+// type Sushi = Food & { 
+//     salty: boolean
+// }
+// type Cake = Food & {
+//     sweet: boolean
+// }
+
+// interface Food { 
+//     calories: number
+//     tasty: boolean
+// }
+// interface Sushi extends Food { 
+//     salty: boolean
+// }
+// interface Cake extends Food {
+//     sweet: boolean
+// }
+
+// // type A = number type B = A | string // не переписать на интерфейсы
+
+// interface A {
+//     good(x: number): string
+//     bad(x: number): string }
+// interface B extends A {
+//     good(x: string | number): string
+//     bad(x: string): string // Ошибка TS2430: Interface 'B'
+//     // некорректно расширяет
+// }
+
+// //слияние деклораций
+// interface User { 
+//     name: string
+// }
+
+// interface User { 
+//     age: number
+// }
+
+// let a: User = { 
+//     name: 'Ashley',
+//     age: 30 
+// }
+
+
+// //типы такое не позволяют делать
+// type User = { 
+//     // Ошибка TS2300: повторяющийся идентификатор 'User'. 
+//     name: string
+// }
+// type User = { 
+//     // Ошибка TS2300: повторяющийся идентификатор 'User'. 
+//     age: number
+// }
+
+interface Animal { 
+    readonly name: string
+    eat(food: string): void
+    sleep(hours: number): void 
+}
+class Cat implements Animal, Feline { 
+    name = 'Whiskers'
+    eat(food: string) {
+        console.info('Ate some', food, '. Mmm!')
+    }
+    sleep(hours: number) {
+        console.info('Slept for', hours, 'hours')
+    }
+    meow() {
+        console.info('meow');
+    }
+}
+
+interface Feline {
+    meow(): void
+}
+
+class Zebra { 
+    trot() {
+    // ...
+    } 
+}
+class Poodle { 
+    trot() {
+    // ...
+    } 
+}
+
+function ambleAround(animal: Zebra) { 
+    animal.trot()
+}
+
+let zebra = new Zebra
+let poodle = new Poodle ambleAround(zebra) // OK
+ambleAround(poodle) // OK с точки зрения они взаимозаменяемы
+
+class A { 
+    private x = 1
+}
+
+class B extends A {} 
+function f(a: A) {}
+
+f(new A)
+f(new B)
+
+f({x: 1})
+// OK // OK
+// Ошибка TS2345: аргумент типа '{x: number}' несовместим // с параметром типа 'A'. Свойство 'x' является
+// private в типе 'A', но не в типе '{x: number}'.
+
+// значения
+let a = 1999 function b() {}
+
+// типы
+type a = number 
+interface b {
+    (): void 
+}
+
+class C {}
+let c: C
+    = new C 
+
+enum E {F, G} 
+let e: E
+    = E.F 
+
+type State = {
+[key: string]: string
+}
+class StringDatabase {
+    state: State = {}
+    get(key: string): string | null {
+    return key in this.state ? this.state[key] : null 
+    }
+
+    set(key: string, value: string): void { 
+        this.state[key] = value
+    }
+    static from(state: State) {
+    let db = new StringDatabase 
+    for (let key in state) {
+            db.set(key, state[key])
+        }
+    return db 
+    }
+}
+
+interface StringDatabase { state: State
+    get(key: string): string | null
+    set(key: string, value: string): void 
+}
+interface StringDatabaseConstructor { 
+    new(): StringDatabase
+    from(state: State): StringDatabase
+}
