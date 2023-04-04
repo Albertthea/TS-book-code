@@ -7,6 +7,8 @@
 // }
 // let d = c.apple * 4
 
+import { isNamedExportBindings } from "typescript";
+
 // let a: any = 666
 // let b: any = ['danger'] 
 // let c = a + b
@@ -920,105 +922,183 @@
 //     age: number
 // }
 
-interface Animal { 
-    readonly name: string
-    eat(food: string): void
-    sleep(hours: number): void 
+// interface Animal { 
+//     readonly name: string
+//     eat(food: string): void
+//     sleep(hours: number): void 
+// }
+// class Cat implements Animal, Feline { 
+//     name = 'Whiskers'
+//     eat(food: string) {
+//         console.info('Ate some', food, '. Mmm!')
+//     }
+//     sleep(hours: number) {
+//         console.info('Slept for', hours, 'hours')
+//     }
+//     meow() {
+//         console.info('meow');
+//     }
+// }
+
+// interface Feline {
+//     meow(): void
+// }
+
+// class Zebra { 
+//     trot() {
+//     // ...
+//     } 
+// }
+// class Poodle { 
+//     trot() {
+//     // ...
+//     } 
+// }
+
+// function ambleAround(animal: Zebra) { 
+//     animal.trot()
+// }
+
+// let zebra = new Zebra
+// let poodle = new Poodle ambleAround(zebra) // OK
+// ambleAround(poodle) // OK с точки зрения они взаимозаменяемы
+
+// class A { 
+//     private x = 1
+// }
+
+// class B extends A {} 
+// function f(a: A) {}
+
+// f(new A)
+// f(new B)
+
+// f({x: 1})
+// // OK // OK
+// // Ошибка TS2345: аргумент типа '{x: number}' несовместим // с параметром типа 'A'. Свойство 'x' является
+// // private в типе 'A', но не в типе '{x: number}'.
+
+// // значения
+// let a = 1999 function b() {}
+
+// // типы
+// type a = number 
+// interface b {
+//     (): void 
+// }
+
+// class C {}
+// let c: C
+//     = new C 
+
+// enum E {F, G} 
+// let e: E
+//     = E.F 
+
+// type State = {
+// [key: string]: string
+// }
+// class StringDatabase {
+//     state: State = {}
+//     get(key: string): string | null {
+//     return key in this.state ? this.state[key] : null 
+//     }
+
+//     set(key: string, value: string): void { 
+//         this.state[key] = value
+//     }
+//     static from(state: State) {
+//     let db = new StringDatabase 
+//     for (let key in state) {
+//             db.set(key, state[key])
+//         }
+//     return db 
+//     }
+// }
+
+// interface StringDatabase { state: State
+//     get(key: string): string | null
+//     set(key: string, value: string): void 
+// }
+// interface StringDatabaseConstructor { 
+//     new(): StringDatabase
+//     from(state: State): StringDatabase
+// }
+
+
+//Online cours, chapter 1-2
+//  const pizzas = [
+//     { name: 'Pepperoni', toppings: ['pepperoni'] }
+//  ]
+
+//  const mappedPizzas = pizzas.map((pizza, idx) => {
+//     pizza.name.toUpperCase()
+// });
+//  console.log(pizzas)
+
+//  const pizza = { 
+//     name: 'Blazing Inferno', 
+//     getName: function () {
+//         console.log(this.name);
+//     },
+//     }
+
+
+// console.log(pizza.getName());
+
+// function multiply (a, b = 25) {
+//     return a * b;
+// }
+
+// console.log(multiply(5))
+
+// const pizza  = {
+//     name: 'Margarita',
+//     price: 15,
+//     getName: function() {
+//         return this.name;
+//     }
+// };
+
+
+// console.log(pizza.getName());
+// const toppings = ['pepperoni'];
+
+// function createOrder(pizza, toppings) {
+//     return {pizza, toppings}
+// };
+
+// console.log(createOrder(pizza, toppings));
+ 
+// function sumAll(...arr:any) {
+//     return arr.reduce((prev:number, next:number) => prev + next);
+// }
+
+// const sum = sumAll([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+// console.log(sum);
+
+// const toppings = ['bacon', 'chilli'];
+// const newToppings = ['pepperoni'];
+
+// const allToppings = [...toppings, ...newToppings];
+// console.log(allToppings);
+
+const pizza = {
+    name: 'Margarita',
+    toppings: ['bacon', 'chilli'],
 }
-class Cat implements Animal, Feline { 
-    name = 'Whiskers'
-    eat(food: string) {
-        console.info('Ate some', food, '. Mmm!')
-    }
-    sleep(hours: number) {
-        console.info('Slept for', hours, 'hours')
-    }
-    meow() {
-        console.info('meow');
-    }
+
+
+function order({name: pizzaName, toppings: pizzaToppings}) {
+    console.log(pizzaName, pizzaToppings)
 }
 
-interface Feline {
-    meow(): void
-}
+const myOrder = order(pizza);
 
-class Zebra { 
-    trot() {
-    // ...
-    } 
-}
-class Poodle { 
-    trot() {
-    // ...
-    } 
-}
+const {pizzaName} = order(pizza);
 
-function ambleAround(animal: Zebra) { 
-    animal.trot()
-}
+const toppings = ['bacon', 'cheese'];
+const firstItem = toppings[0];
+const [first, second] = toppings;
 
-let zebra = new Zebra
-let poodle = new Poodle ambleAround(zebra) // OK
-ambleAround(poodle) // OK с точки зрения они взаимозаменяемы
-
-class A { 
-    private x = 1
-}
-
-class B extends A {} 
-function f(a: A) {}
-
-f(new A)
-f(new B)
-
-f({x: 1})
-// OK // OK
-// Ошибка TS2345: аргумент типа '{x: number}' несовместим // с параметром типа 'A'. Свойство 'x' является
-// private в типе 'A', но не в типе '{x: number}'.
-
-// значения
-let a = 1999 function b() {}
-
-// типы
-type a = number 
-interface b {
-    (): void 
-}
-
-class C {}
-let c: C
-    = new C 
-
-enum E {F, G} 
-let e: E
-    = E.F 
-
-type State = {
-[key: string]: string
-}
-class StringDatabase {
-    state: State = {}
-    get(key: string): string | null {
-    return key in this.state ? this.state[key] : null 
-    }
-
-    set(key: string, value: string): void { 
-        this.state[key] = value
-    }
-    static from(state: State) {
-    let db = new StringDatabase 
-    for (let key in state) {
-            db.set(key, state[key])
-        }
-    return db 
-    }
-}
-
-interface StringDatabase { state: State
-    get(key: string): string | null
-    set(key: string, value: string): void 
-}
-interface StringDatabaseConstructor { 
-    new(): StringDatabase
-    from(state: State): StringDatabase
-}
+console.log([first, second]);
