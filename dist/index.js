@@ -8,10 +8,19 @@
 // }
 // let d = c.apple * 4
 Object.defineProperty(exports, "__esModule", { value: true });
-const pizza = { name: '4 cheese', toppings: 5 };
-const serialized = JSON.stringify(pizza);
-function getNameFromJSON(obj) {
-    return JSON.parse(obj).toppings;
+;
+;
+let pizza;
+function createPizza(name, sizes) {
+    return {
+        name,
+        sizes,
+        getAvailableSizes() {
+            return this.sizes;
+        }
+    };
 }
-getNameFromJSON(serialized);
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+pizza[1] = 'xyz';
+pizza.toppings = 1;
 //# sourceMappingURL=index.js.map

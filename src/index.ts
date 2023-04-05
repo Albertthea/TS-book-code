@@ -1133,14 +1133,50 @@ import { isNamedExportBindings } from "typescript";
 
 // selectSize('small');
 
-type Pizza = { name: string, toppings: number};
+// type Pizza = { name: string, toppings: number};
 
-const pizza:Pizza  = {name: '4 cheese', toppings: 5};
+// const pizza:Pizza  = {name: '4 cheese', toppings: 5};
 
-const serialized = JSON.stringify(pizza);
+// const serialized = JSON.stringify(pizza);
 
-function getNameFromJSON(obj: string) {
-    return (<Pizza>JSON.parse(obj)).toppings;
+// function getNameFromJSON(obj: string) {
+//     return (<Pizza>JSON.parse(obj)).toppings;
+// }
+
+// getNameFromJSON(serialized);
+
+
+//Interfaces
+
+interface Sizes  {
+    sizes: string[],
 }
 
-getNameFromJSON(serialized);
+interface Pizza extends Sizes{ 
+    name: string, 
+    toppings?: number;
+    getAvailableSizes(): void;
+    [key: number]: string;
+};
+
+interface Pizzas  { 
+    data: Pizza[]
+};
+
+type getAvailableSizes = () => string[];
+
+let pizza: Pizza;
+
+function createPizza(name:string, sizes: string[]): Pizza {
+    return {
+        name,
+        sizes, 
+        getAvailableSizes() {
+            return this.sizes;
+        }
+    };
+}
+
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+pizza[1] = 'xyz'
+pizza.toppings = 1;
