@@ -1083,22 +1083,64 @@ import { isNamedExportBindings } from "typescript";
 // const allToppings = [...toppings, ...newToppings];
 // console.log(allToppings);
 
-const pizza = {
-    name: 'Margarita',
-    toppings: ['bacon', 'chilli'],
+// const pizza = {
+//     name: 'Margarita',
+//     toppings: ['bacon', 'chilli'],
+// }
+
+
+// function order({name: pizzaName, toppings: pizzaToppings}) {
+//     console.log(pizzaName, pizzaToppings)
+// }
+
+// const myOrder = order(pizza);
+
+// const {pizzaName} = order(pizza);
+
+// const toppings = ['bacon', 'cheese'];
+// const firstItem = toppings[0];
+// const [first, second] = toppings;
+
+// console.log([first, second]);
+
+// let pizza: {name: string, price: number, getName(): string} = {
+//     name: '4 cheese',
+//     price: 20,
+//     getName() {
+//         return pizza.name;
+//     }
+// }
+
+// console.log(pizza.getName())
+
+// const sizes: string [] = ['smal', 'medium', 'large'];
+
+// let toppings: Array<string> ;
+
+// toppings = ['tomato', 'garlic'];
+
+// let pizza: [string, number, boolean];
+// pizza = ['4 cheese', 20, true];
+
+// type Size = 'small'| 'medium' | 'large';
+// type Callback = (size: Size) => void;
+
+// let pizzaSize: Size = 'small';
+
+// const selectSize: Callback = (x) => {
+//     pizzaSize = x;
+// }
+
+// selectSize('small');
+
+type Pizza = { name: string, toppings: number};
+
+const pizza:Pizza  = {name: '4 cheese', toppings: 5};
+
+const serialized = JSON.stringify(pizza);
+
+function getNameFromJSON(obj: string) {
+    return (<Pizza>JSON.parse(obj)).toppings;
 }
 
-
-function order({name: pizzaName, toppings: pizzaToppings}) {
-    console.log(pizzaName, pizzaToppings)
-}
-
-const myOrder = order(pizza);
-
-const {pizzaName} = order(pizza);
-
-const toppings = ['bacon', 'cheese'];
-const firstItem = toppings[0];
-const [first, second] = toppings;
-
-console.log([first, second]);
+getNameFromJSON(serialized);
