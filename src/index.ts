@@ -1148,35 +1148,118 @@ import { isNamedExportBindings } from "typescript";
 
 //Interfaces
 
-interface Sizes  {
-    sizes: string[],
+// interface Sizes  {
+//     sizes: string[],
+// }
+
+// interface Pizza extends Sizes{ 
+//     name: string, 
+//     toppings?: number;
+//     getAvailableSizes(): void;
+//     [key: number]: string;
+// };
+
+// interface Pizzas  { 
+//     data: Pizza[]
+// };
+
+// type getAvailableSizes = () => string[];
+
+// let pizza: Pizza;
+
+// function createPizza(name:string, sizes: string[]): Pizza {
+//     return {
+//         name,
+//         sizes, 
+//         getAvailableSizes() {
+//             return this.sizes;
+//         }
+//     };
+// }
+
+// pizza = createPizza('Pepperoni', ['small', 'medium']);
+// pizza[1] = 'xyz'
+// pizza.toppings = 1;
+
+// classes
+
+
+
+// const sizes = new Sizes(['small', 'large']);
+
+// // invoke getter
+// console.log(sizes.availableSizes);
+
+
+// //invoke setter
+// sizes.availableSizes = ['medium', 'extra'];
+// console.log(sizes.availableSizes);
+
+// interface SizesInterface {
+//     availableSizes:string[];
+// }
+
+// abstract class Sizes implements SizesInterface{
+//     constructor(protected sizes: string[]) {}
+
+//         set availableSizes(sizes: string[]) {
+//             this.sizes = sizes;
+//         }
+
+//         get availableSizes() {
+//             return this.sizes;
+//         }
+//     }
+
+// interface PizzaInterface {
+//     readonly name: string;
+//     toppings: string[];
+//     updateSizes(sizes: string[]): void;
+//     addTopping(topping: string): void;
+// }
+// class Pizza extends Sizes implements PizzaInterface{
+//     public toppings: string[] = [];
+
+//     constructor(readonly name: string, public sizes: string[]) {
+//         super(sizes);
+//     }
+
+//     public updateSizes(sizes: string[]) {
+//         this.sizes = sizes;
+//     }
+
+//     public addTopping(topping: string) {
+//         this.toppings.push(topping);
+//     }
+// }
+
+// // function Pizza(name:string) {
+// //     this.name = name;
+// //     this.toppings = [];
+// // }
+
+// Pizza.prototype.addTopping = function addTopping(topping: string) {
+//     this.toppings.push(topping);
+// }
+
+// const pizza = new Pizza ('4 chesse', ['extra', 'big']);
+// pizza.addTopping('tomato');
+// pizza.name;
+
+// console.log(pizza);
+
+const date1 = new Date();
+const date = Date.now();
+
+
+console.log(date);
+
+class Coupon {
+    static allowed = ['4 cheese', 'Pepperoni'];
+    static create(percent: number) {
+        return `2PIZZA ${percent}`;
+    }
 }
 
-interface Pizza extends Sizes{ 
-    name: string, 
-    toppings?: number;
-    getAvailableSizes(): void;
-    [key: number]: string;
-};
-
-interface Pizzas  { 
-    data: Pizza[]
-};
-
-type getAvailableSizes = () => string[];
-
-let pizza: Pizza;
-
-function createPizza(name:string, sizes: string[]): Pizza {
-    return {
-        name,
-        sizes, 
-        getAvailableSizes() {
-            return this.sizes;
-        }
-    };
-}
-
-pizza = createPizza('Pepperoni', ['small', 'medium']);
-pizza[1] = 'xyz'
-pizza.toppings = 1;
+Coupon.allowed;
+Coupon.create;
